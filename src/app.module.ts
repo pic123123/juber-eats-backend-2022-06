@@ -1,3 +1,4 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -29,7 +30,13 @@ import { UsersModule } from 'src/users/users.module';
         JOKER_DB_DATABASE: Joi.string().required(),
       }),
     }),
-    GraphQLModule.forRoot(),
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: true, //스키마를 메모리에서 즉시 생성
+      sortSchema: true, //스키마를 사전 순으로 정렬
+      debug: true, //디버그 모드 끄고싶을때 false
+      playground: true, //playground 끄고싶을때 false
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.JOKER_DB_HOST,
