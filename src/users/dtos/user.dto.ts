@@ -12,4 +12,12 @@ export class CreateAccountOutput extends CoreOutput {}
 export class LoginInput extends PickType(User, ['email', 'password']) {}
 
 @ObjectType()
-export class LoginOutput extends CoreOutput {}
+export class LoginOutput extends CoreOutput {
+  @Field((type) => String)
+  token?: string;
+}
+
+@ObjectType()
+export class MemberFindOneServiceOutput extends CoreOutput {
+  user: User;
+}
