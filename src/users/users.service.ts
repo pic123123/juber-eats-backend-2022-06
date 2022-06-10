@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CreateAccountInput } from 'src/users/dtos/create-account.dto';
 import { User } from 'src/users/entities/user.entity';
 import { Repository } from 'typeorm';
 
@@ -11,5 +12,15 @@ export class UserService {
 
   getHello(): string {
     return 'Hello World!';
+  }
+
+  async createAccount({ email, password, role }: CreateAccountInput) {
+    // check new user
+    // create user & hash the password
+    try {
+      const exists = await this.users.findOne({ email });
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
