@@ -15,15 +15,12 @@ import { UsersModule } from 'src/users/users.module';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, //어디서나 config module 접근 가능하게 함(global)
-      envFilePath:
-        process.env.NODE_ENV === 'dev'
-          ? '.env.dev'
-          : process.env.NODE_ENV === 'stag'
-          ? '.env.stag'
-          : '.env.prod',
+      envFilePath: process.env.NODE_ENV === 'dev' ? '.env.dev' : process.env.NODE_ENV === 'stag' ? '.env.stag' : '.env.prod',
       //스키마 유효성검사(환경 변수가 undefined이라던가 잘못된 값이 들어와서 왜 안되는지 고생해본 경험이 있으시다면 아주 유용할겁니다.)
       validationSchema: Joi.object({
         NODE_ENV: Joi.string().valid('dev', 'stag', 'prod').required(), //NODE_ENV가 dev,prod가 아닐때 에러발생시킨다
+        JWT_SECRET_KEY: Joi.string().required(),
+        SALT: Joi.string().required(),
         JOKER_DB_HOST: Joi.string().required(),
         JOKER_DB_USERNAME: Joi.string().required(),
         JOKER_DB_PASSWORD: Joi.string().required(),
