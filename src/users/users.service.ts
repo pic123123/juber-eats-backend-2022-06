@@ -18,9 +18,20 @@ export class UserService {
     // check new user
     // create user & hash the password
     try {
-      const exists = await this.users.findOne({ email });
+      const exists = await this.users.findOne({
+        where: {
+          email: email,
+        },
+      });
+      if (exists) {
+        // make Error
+        return;
+      }
+      await this.users.save(this.users.create({ email, password, role }));
+      return true;
     } catch (e) {
       console.log(e);
+      //make error
     }
   }
 }
