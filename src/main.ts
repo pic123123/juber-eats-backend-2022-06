@@ -11,6 +11,6 @@ async function bootstrap() {
     credentials: true, // true로 하면 설정한 내용을 response 헤더에 추가 해줍니다.이거없으면 cors걸림
   });
 
-  await app.listen(6878);
+  await app.listen(4000);
 }
 bootstrap();

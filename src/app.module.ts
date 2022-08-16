@@ -43,7 +43,7 @@ import { UsersModule } from 'src/users/users.module';
       password: process.env.JOKER_DB_PASSWORD,
       database: process.env.JOKER_DB_DATABASE,
       entities: [User],
-      // synchronize: process.env.NODE_ENV === 'dev',
+      //synchronize: process.env.NODE_ENV === 'dev',
       logging: process.env.NODE_ENV === 'dev',
       extra: {
         waitForConnections: true, // 사용 가능한 연결이없고 한계에 도달했을 때 풀의 동작을 결정합니다. 그 경우 true, 풀은 접속 요구를 큐에 넣어, 이용 가능하게되었을 때에 접속 요구를 호출합니다. false의 경우 false, 풀은 즉시 에러로 콜백합니다. (기본값 : true)

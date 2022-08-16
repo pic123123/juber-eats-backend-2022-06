@@ -6,11 +6,11 @@ export class CoreEntity {
   @Field((type) => Number)
   id: number;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @CreateDateColumn({ name: 'created_at', comment: '생성일' })
   @Field((type) => Date)
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn({ name: 'updated_at', comment: '수정일' })
   @Field((type) => Date)
   updatedAt: Date;
 }
